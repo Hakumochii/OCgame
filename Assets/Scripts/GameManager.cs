@@ -3,10 +3,9 @@ using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private PlayerInput playerInput;
+    PlayerInput playerInput;
 
-    State currentState = State.UI;
-    enum State { UI, Gameplay, Minigame }
+    
 
     // Singleton pattern because there should only be one and many scripts acess it
     private static GameManager instance;
@@ -46,24 +45,9 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+
+        playerInput = GetComponent<PlayerInput>();
     }
 
-    void Update()
-    {
-        switch (currentState)
-        {
-            case State.UI:
-                playerInput.SwitchCurrentActionMap("UI");
-                break;
-            case State.Gameplay:
-                playerInput.SwitchCurrentActionMap("Gameplay");
-                break;
-            case State.Minigame:
-                ChangeToMinigame();
-                break;
-        } 
-    }
-
-    void ChangeToMinigame()
-    {}
+    
 }

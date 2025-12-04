@@ -27,7 +27,6 @@ public class CharacterMovement : MonoBehaviour
     private void Start()
     {
         _controller = GetComponent<CharacterController>();
-        _playerInput = GetComponent<PlayerInput>();
 
         // Capture the initial position and rotation of the CinemachineCameraTarget
         _initialCameraPosition = CinemachineCameraTarget.transform.position;
@@ -40,14 +39,9 @@ public class CharacterMovement : MonoBehaviour
         CinemachineCameraTarget.transform.rotation = _initialCameraRotation;
     }
 
-    public void OnMove(InputValue value)
+    public void OnMove(InputAction.CallbackContext ctx)
     {
-        MoveInput(value.Get<Vector2>());
-    }
-
-    private void MoveInput(Vector2 newMoveDirection)
-    {
-        move = newMoveDirection;
+        move = ctx.ReadValue<Vector2>();
     }
 
     private void Update()
