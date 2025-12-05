@@ -6,7 +6,7 @@ public class EnterArea : Interactable
 {
     [SerializeField] private GameManager _gameManager;
     [SerializeField] private string areaSceneName;
-
+    private string sceneType = "Area";
     [SerializeField] private GameObject ConfimPanel;
     
 
@@ -24,6 +24,7 @@ public class EnterArea : Interactable
         {
           _gameManager.currentPanel = Instantiate(ConfimPanel, new Vector3(0, 0, 0), Quaternion.identity); 
           _gameManager.sceneToLoad = areaSceneName;
+          _gameManager.sceneTypeToGoTo = sceneType;
         }
     }
 

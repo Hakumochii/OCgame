@@ -12,6 +12,8 @@ public class ButtonEffects : MonoBehaviour
 
     public void GoToScene()
     {
+        _gameManager.currentSceneType = _gameManager.sceneTypeToGoTo;
+        _gameManager.sceneTypeToGoTo = null;
         SceneManager.LoadScene(_gameManager.sceneToLoad);
     }
 
@@ -19,6 +21,6 @@ public class ButtonEffects : MonoBehaviour
     {
         Destroy(_gameManager.currentPanel);
         _gameManager.sceneToLoad = null;
-        _gameManager.SwitchToMap(_gameManager.currentScene);
+        _gameManager.SwitchToMap(_gameManager.currentSceneType);
     }
 }

@@ -690,8 +690,8 @@
                 },
                 {
                     "name": "",
-                    "id": "183c109c-5b13-43b4-9ee7-7a7f88653937",
-                    "path": "<Mouse>/leftButton",
+                    "id": "40f9f44a-8efe-4ce0-a4cd-c2d1c71070ce",
+                    "path": "<Keyboard>/enter",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

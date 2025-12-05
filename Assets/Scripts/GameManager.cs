@@ -6,7 +6,8 @@ public class GameManager : MonoBehaviour
 {
     public string sceneToLoad;
     public GameObject currentPanel;
-    public string currentScene;
+    public string currentSceneType = "Overworld";
+    public string sceneTypeToGoTo;
     PlayerInput playerInput;
 
     // Singleton pattern because there should only be one and many scripts acess it
@@ -50,7 +51,6 @@ public class GameManager : MonoBehaviour
 
         playerInput = GetComponent<PlayerInput>();
         Scene scene = SceneManager.GetActiveScene();
-        currentScene = scene.name;
     }
 
     public void SwitchToMap(string map)
