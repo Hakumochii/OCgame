@@ -1,11 +1,13 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public string sceneToLoad;
+    public GameObject currentPanel;
+    public string currentScene;
     PlayerInput playerInput;
-
-    
 
     // Singleton pattern because there should only be one and many scripts acess it
     private static GameManager instance;
@@ -18,7 +20,7 @@ public class GameManager : MonoBehaviour
             if (instance == null || instance.gameObject == null)
             {
                 // Find an existing instance in the scene
-                instance = FindObjectOfType<GameManager>();
+                instance = FindFirstObjectByType<GameManager>();
 
                 // If no instance exists, create a new one
                 if (instance == null)
@@ -47,7 +49,13 @@ public class GameManager : MonoBehaviour
         }
 
         playerInput = GetComponent<PlayerInput>();
+        Scene scene = SceneManager.GetActiveScene();
+        currentScene = scene.name;
     }
 
+    public void SwitchToMap(string map)
+    {
+        playerInput.SwitchCurrentActionMap(map); 
+    }
     
 }

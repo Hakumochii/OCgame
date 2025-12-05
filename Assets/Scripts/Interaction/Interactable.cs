@@ -1,19 +1,6 @@
 using UnityEngine;
 
-public class Interactable : MonoBehaviour
+public abstract class Interactable : MonoBehaviour
 {
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Player")
-        {
-            StartInteraction();
-        }
-        else
-        {
-            return;
-        }
-        
-    }
-
-    protected virtual void StartInteraction(){}
+    public abstract void StartInteraction();
 }
