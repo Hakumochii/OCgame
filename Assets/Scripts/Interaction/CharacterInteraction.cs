@@ -3,10 +3,15 @@ using UnityEngine.InputSystem;
 
 public class CharacterInteraction : MonoBehaviour
 {
-    [SerializeField] private PlayerInput _playerInput;
+    private PlayerInput _playerInput;
     
     public bool isInteractableNear;
     Interactable interactable;
+
+    void Awake()
+    {
+       _playerInput = FindFirstObjectByType<PlayerInput>();
+    }
 
     public void OnInteract(InputAction.CallbackContext ctx)
     {

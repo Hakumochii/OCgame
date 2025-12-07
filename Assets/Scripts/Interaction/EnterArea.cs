@@ -4,11 +4,16 @@ using System.Collections;
 
 public class EnterArea : Interactable
 {
-    [SerializeField] private GameManager _gameManager;
+    private GameManager _gameManager;
     [SerializeField] private string areaSceneName;
-    private string sceneType = "Area";
+    [SerializeField] private string sceneType = "Area";
     [SerializeField] private GameObject ConfimPanel;
+    [SerializeField] private Vector3 nextPlayerPlacement;
     
+    void Awake()
+    {
+        _gameManager = FindFirstObjectByType<GameManager>();
+    }
 
     public override void StartInteraction()
     {
@@ -25,6 +30,7 @@ public class EnterArea : Interactable
           _gameManager.currentPanel = Instantiate(ConfimPanel, new Vector3(0, 0, 0), Quaternion.identity); 
           _gameManager.sceneToLoad = areaSceneName;
           _gameManager.sceneTypeToGoTo = sceneType;
+          _gameManager.nextPlayerPlacement = nextPlayerPlacement;
         }
     }
 

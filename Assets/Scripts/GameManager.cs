@@ -1,14 +1,22 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("NEEDS input")]
+    public GameObject currentCharacter;
+    public Vector3 nextPlayerPlacement;
+
+    [Header("Needs NO input")]
     public string sceneToLoad;
     public GameObject currentPanel;
     public string currentSceneType = "Overworld";
     public string sceneTypeToGoTo;
+    public GameObject nextPlayer;
     PlayerInput playerInput;
+    
 
     // Singleton pattern because there should only be one and many scripts acess it
     private static GameManager instance;
@@ -49,13 +57,38 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        playerInput = GetComponent<PlayerInput>();
+        playerInput = FindFirstObjectByType<PlayerInput>();
         Scene scene = SceneManager.GetActiveScene();
+
+        DontDestroyOnLoad(this.gameObject);
     }
 
     public void SwitchToMap(string map)
     {
         playerInput.SwitchCurrentActionMap(map); 
     }
+
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        PlaceCharacter();
+        playerInput = FindFirstObjectByType<PlayerInput>();
+    }
+
+    public void PlaceCharacter()
+    {
+        currentCharacter = GameObject.FindWithTag("Player");
+        currentCharacter.transform.position = nextPlayerPlacement;
+    }
+
     
 }

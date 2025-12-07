@@ -24,8 +24,10 @@ public class CharacterMovement : MonoBehaviour
     private float _verticalVelocity;
     private float RotationSmoothTime = 0.12f; 
 
-    private void Start()
+    void Awake()
     {
+        GameManager _gameManager = FindFirstObjectByType<GameManager>();
+        _playerInput = _gameManager.GetComponent<PlayerInput>();
         _controller = GetComponent<CharacterController>();
 
         // Capture the initial position and rotation of the CinemachineCameraTarget
