@@ -5,7 +5,7 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
-    [Header("NEEDS input")]
+    
     public GameObject currentCharacter;
     public Vector3 nextPlayerPlacement;
 

@@ -2,18 +2,16 @@ using UnityEngine;
 using System.Collections;
 
 
-public class EnterArea : Interactable
+public class Enterance : Interactable
 {
-    private GameManager _gameManager;
+    
+    [SerializeField] private GameObject ConfimPanel;
+    [SerializeField] private bool trainStation;
+
+    [Header("Fill if NOT a train station")]
     [SerializeField] private string areaSceneName;
     [SerializeField] private string sceneType = "Area";
-    [SerializeField] private GameObject ConfimPanel;
     [SerializeField] private Vector3 nextPlayerPlacement;
-    
-    void Awake()
-    {
-        _gameManager = FindFirstObjectByType<GameManager>();
-    }
 
     public override void StartInteraction()
     {
@@ -28,9 +26,10 @@ public class EnterArea : Interactable
         if (_gameManager.currentPanel == null)
         {
           _gameManager.currentPanel = Instantiate(ConfimPanel, new Vector3(0, 0, 0), Quaternion.identity); 
-          _gameManager.sceneToLoad = areaSceneName;
-          _gameManager.sceneTypeToGoTo = sceneType;
-          _gameManager.nextPlayerPlacement = nextPlayerPlacement;
+          if (!trainStation)
+            _gameManager.sceneToLoad = areaSceneName;
+            _gameManager.sceneTypeToGoTo = sceneType;
+            _gameManager.nextPlayerPlacement = nextPlayerPlacement;
         }
     }
 

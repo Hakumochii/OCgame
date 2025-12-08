@@ -1,6 +1,13 @@
 using UnityEngine;
 
-public abstract class Interactable : MonoBehaviour
+public class Interactable : MonoBehaviour
 {
-    public abstract void StartInteraction();
+    protected GameManager _gameManager;
+
+    public virtual void StartInteraction(){}
+
+    protected void Awake()
+    {
+        _gameManager = FindFirstObjectByType<GameManager>();
+    }
 }

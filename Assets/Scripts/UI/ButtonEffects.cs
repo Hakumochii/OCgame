@@ -23,4 +23,15 @@ public class ButtonEffects : MonoBehaviour
         _gameManager.sceneToLoad = null;
         _gameManager.SwitchToMap(_gameManager.currentSceneType);
     }
+    
+    public void GoToNewDistrict(District districtToGoTo)
+    {
+        _gameManager.sceneToLoad = districtToGoTo.areaSceneName;
+        _gameManager.sceneTypeToGoTo = "Overworld";
+        _gameManager.nextPlayerPlacement = districtToGoTo.nextPlayerPlacement;
+        GoToScene();
+    }
+
 }
+
+
