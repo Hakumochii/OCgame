@@ -1,4 +1,4 @@
-using UnityEngine;
+/*using UnityEngine;
 
 public class NPCinArea : Interactable
 {
@@ -11,4 +11,4 @@ public class NPCinArea : Interactable
     {
         _gameManager.SwitchToMap("UI");
     }
-}
+}*/
